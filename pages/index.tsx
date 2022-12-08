@@ -1,70 +1,33 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
-import Link from 'next/link';
+import MintButton from "../components/MintButton";
 
 const Home: NextPage = () => {
   return (
     <div className={`${styles.container} background`}>
       <Head>
-        <title>Start off Decent</title>
+        <title>Mint J Dilla Anthology</title>
         <meta
           name="description"
-          content='A template for implementing the Decent Protocol wtih Rainbowkit in Next JS'
+          content='Custom mint site by decent.xyz for fans to mint NFTs from the J Dilla collection.'
         />
-        <link rel="icon" href="/images/favi.png" />
+        <link rel="icon" href="/images/icon.png" />
       </Head>
 
-      <main className={styles.main}>
-        <ConnectButton />
-
-        <h1 className={`${styles.title} font-medium`}>
-          Welcome to the Decent Protocol
-        </h1>
-
-        <div className={`${styles.description} flex items-center gap-2`}>
-          <p>Powered by</p>
-          <a className='pt-2' href="https://decentxyz.gitbook.io/decent-sdk-documentation/"><Image src='/images/icon.png' height={20} width={25} alt='decent icon'/></a>
-          <a href="https://rainbowkit.com" className='text-lg'> + 🌈</a>
-          <a href='href="https://nextjs.org/docs"'> + Next.js</a>
+      <main className={`${styles.main} lg:mx-20 mx-10`}>
+        <div className='mt-12'>
+          <h1 className={`${styles.title} font-bold`}>
+            The Official J Dilla Legacy Collection
+          </h1>
+          <div className={`${styles.description} text-center`}>
+            {`The J Dilla Legacy Collection is a web3 digital collection that creates a new way to experience the musical impact of J Dilla. It includes some of the most iconic artwork made by renowned artist Desiree Kelly, exclusive physical collectors items, and interactive music collectibles that cannot be found anywhere else. All of this will lead to an ultimate music Block Party experience in the metaverse. The collection is designed to give fans a glimpse into the life and work of one of hip-hop's most influential artists curated through the eyes of the person who knew him best - his mother, Ma Dukes.`}
+          </div>
         </div>
 
         <div className={`${styles.grid} cursor-pointer`}>
-          <Link href='/deploy-contracts'>
-          <div className={styles.card}>
-            <h2 className='font-medium'>Test Decent Editions &rarr;</h2>
-            <p>Deploying sophisticated contracts has never been easier.</p>
-          </div>
-          </Link>
-
-          <a href="https://decentxyz.gitbook.io/decent-sdk-documentation/" className={styles.card}>
-            <h2 className='font-medium'>Decent Protocol Docs &rarr;</h2>
-            <p>Review smart contracts and architecture.</p>
-          </a>
-
-          <a href="https://rainbowkit.com" className={styles.card}>
-            <h2 className='font-medium'>RainbowKit Docs &rarr;</h2>
-            <p>Learn how to customize your wallet connection flow.</p>
-          </a>
-
-          <a href="https://wagmi.sh" className={styles.card}>
-            <h2 className='font-medium'>wagmi Docs &rarr;</h2>
-            <p>Learn how to interact with Ethereum.</p>
-          </a>
-
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2 className='font-medium'>Next.js Docs &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://hq.decent.xyz" className={styles.card}>
-            <h2 className='font-medium'>Decent Creator Studio &rarr;</h2>
-            <p>
-              {`Explore Decent's creator studio for no-code deployments.`}
-            </p>
-          </a>
+          <MintButton chainId={5} contractAddress={"0xe2597C2CdfA09c49757Fd20094A73F85b02baB87"} price={'.05'} />
         </div>
       </main>
 
