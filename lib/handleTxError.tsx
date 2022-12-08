@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 
+// would appreciate if anyone who forks this repo contributes new error messages back to the main branch so that we can best enable plain english messages for all error types
 const errorMessages = [
   {
     error: "gas required exceeds allowance",

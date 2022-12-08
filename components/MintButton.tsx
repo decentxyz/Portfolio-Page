@@ -28,11 +28,12 @@ const MintButton = (props:any) => {
         onSigning?.(true);
         const sdk = new DecentSDK(props.chainId, signer);
         const nftOne = await edition.getContract(sdk, props.contractAddress);
-        const tx = await nftOne.mint(1, { value: ethers.utils.parseEther(props.price) });
+        const tx = await nftOne.mint(1, { value: ethers.utils.parseEther(props.price) }); //could add a state variable + input number type here to enable batch minting
         const receipt = await tx.wait();
         await onSuccessfulMint(receipt);
       } catch (error) {
         handleTxError(error);
+        onSigning?.(false);
       }
     } else {
       toast.error("Please connect wallet to continue.");
