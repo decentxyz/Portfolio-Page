@@ -1,12 +1,44 @@
 import type { NextPage } from 'next';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 import MintButton from "../components/MintButton";
 import Link from 'next/link';
 import Typeform from '../components/Typeform';
+import { DecentSDK, edition } from "@decent.xyz/sdk";
+import { ethers } from "ethers";
 
 const Home: NextPage = () => {
+  const RPC = "https://ethereum-goerli-rpc.allthatnode.com"; //for testing on goerli
+
+  const CHAINID = 1; //change to 5 to test on goerli
+  
+  const ANTHOLOGY = '0x5eB804cf3f0c6f97e99631961A53bCad2bbA4851';
+  const RUFFDRAFT = '0x59aa1D3BB2C6ea9f09A16296718B62D3A4Df0782';
+  const MADUKES = '0xF3C6B02F3b5482CDed898C82e08D1fa4Cf0f2D43';
+
+  const [anthologyMints, setAnthologyMints] = useState(0);
+  const [ruffdraftMints, setRuffdraftMints] = useState(0);
+  const [madukesMints, setMadukesMints] = useState(0);
+  
+  const updateContractInfo = async () => {
+    const provider = ethers.getDefaultProvider(); //add RPC as parameter for goerli
+    const sdk = new DecentSDK(CHAINID, provider);
+    const anthology = await edition.getContract(sdk, ANTHOLOGY);
+    const ruffdraft = await edition.getContract(sdk, RUFFDRAFT);
+    const madukes = await edition.getContract(sdk, MADUKES);
+
+    setAnthologyMints(parseInt(await anthology.totalSupply()))
+    setRuffdraftMints(parseInt(await ruffdraft.totalSupply()));
+    setMadukesMints(parseInt(await madukes.totalSupply()));
+  }
+
+  useEffect(() => {
+    updateContractInfo();
+  }, [])
+  
+
   return (
     <div className={`${styles.container} background`}>
       <Head>
@@ -35,11 +67,10 @@ const Home: NextPage = () => {
               <Image src="/images/crosswords.png" object-fit="contain" fill alt={'crosswords'} />
             </div>
             {/* still test contracts */}
-            <MintButton chainId={5} contractAddress={"0xe2597C2CdfA09c49757Fd20094A73F85b02baB87"} price={'.05'} />
+            <MintButton chainId={CHAINID} contractAddress={ANTHOLOGY} price={'.05'} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.05 ETH</p>
-              {/* add mint count would be nice */}
-              <p>Quantity: 3,333</p> 
+              <p>Minted: {anthologyMints}/3,333</p> 
               <p>1x Sneaker Contest Entry</p>
             </div>
           </div>
@@ -50,11 +81,10 @@ const Home: NextPage = () => {
               <Image src="/images/dilla-picture.jpg" object-fit="contain" fill alt={'crosswords'} />
             </div>
             {/* still test contracts */}
-            <MintButton chainId={5} contractAddress={"0x43d923b21b4B55fDF5a49197c56C5651561e82f7"} price={'.2'} />
+            <MintButton chainId={CHAINID} contractAddress={RUFFDRAFT} price={'0.2'} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.2 ETH</p>
-              {/* add mint count would be nice */}
-              <p>Quantity: 639</p> 
+              <p>Minted: {ruffdraftMints}/639</p> 
               <p>4x Sneaker Contest Entry</p>
               <p>Shipped poster included and authenticated on chain via QR Code</p>
             </div>
@@ -66,11 +96,10 @@ const Home: NextPage = () => {
               <Image src="/images/animation.gif" object-fit="contain" fill alt={'crosswords'} />
             </div>
             {/* still test contracts */}
-            <MintButton chainId={5} contractAddress={"0xD246fA2E64208F72b698599498E296A06e634DEB"} price={'.3'} />
+            <MintButton chainId={CHAINID} contractAddress={MADUKES} price={'0.3'} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.3 ETH</p>
-              {/* add mint count would be nice */}
-              <p>Quantity: 444</p> 
+              <p>Minted: {madukesMints}/444</p> 
               <p>6x Sneaker Contest Entry</p>
               <p>Shipped poster included and authenticated on chain via QR Code</p>
               <p>Hidden audio message recorded by Ma Dukes</p>
