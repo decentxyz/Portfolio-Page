@@ -9,6 +9,7 @@ import Navbar from '../components/Navbar/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+//make sure you are including the correct chain for your contract here in the rainbowkit config
 const { chains, provider, webSocketProvider } = configureChains(
   [
     chain.mainnet,
@@ -30,7 +31,7 @@ const { chains, provider, webSocketProvider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'Start Decent',
+  appName: 'Decent Minting Page',
   chains,
 });
 
