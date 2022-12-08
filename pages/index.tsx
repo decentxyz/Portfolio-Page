@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 import MintButton from "../components/MintButton";
 import Link from 'next/link';
+import Typeform from '../components/Typeform';
 
 const Home: NextPage = () => {
   return (
@@ -27,12 +28,13 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className='flex flex-wrap justify-between gap-8 justify-center'>
+        <div className='flex flex-wrap justify-between gap-8 justify-center mt-10'>
           <div className='text-center space-y-4 bg-white bg-opacity-10 rounded-md py-4 px-12'>
             <p className='tracking-widest text-2xl font-[600]'>J Dilla Anthology</p>
             <div className='relative w-64 h-64 drop-shadow-md'>
               <Image src="/images/crosswords.png" object-fit="contain" fill alt={'crosswords'} />
             </div>
+            {/* still test contracts */}
             <MintButton chainId={5} contractAddress={"0xe2597C2CdfA09c49757Fd20094A73F85b02baB87"} price={'.05'} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.05 ETH</p>
@@ -47,6 +49,7 @@ const Home: NextPage = () => {
             <div className='relative w-64 h-64 drop-shadow-md'>
               <Image src="/images/dilla-picture.jpg" object-fit="contain" fill alt={'crosswords'} />
             </div>
+            {/* still test contracts */}
             <MintButton chainId={5} contractAddress={"0x43d923b21b4B55fDF5a49197c56C5651561e82f7"} price={'.2'} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.2 ETH</p>
@@ -62,6 +65,7 @@ const Home: NextPage = () => {
             <div className='relative w-64 h-64 drop-shadow-md'>
               <Image src="/images/animation.gif" object-fit="contain" fill alt={'crosswords'} />
             </div>
+            {/* still test contracts */}
             <MintButton chainId={5} contractAddress={"0xD246fA2E64208F72b698599498E296A06e634DEB"} price={'.3'} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.3 ETH</p>
@@ -73,8 +77,9 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-
-        {/* <div data-tf-widget="k9cQ3bTD" data-tf-opacity="100" data-tf-iframe-props="title=J Dilla Legacy Collection Email/wallet survey"></div><iframe src="//embed.typeform.com/next/embed.js"></iframe> */}
+        <div className='h-full w-full lg:mt-12 mt-8 flex justify-center'>
+          <Typeform />
+        </div>
       </main>
 
       <footer className='py-8 border-t border-white text-white justify-center flex items-center'>
