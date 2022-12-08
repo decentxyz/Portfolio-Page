@@ -51,16 +51,16 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={`${styles.main} lg:mx-20 sm:mx-10 xs:mx-2`}>
-        <div className='mt-12'>
+        <div className='mt-12 lg:mx-16 sm:mx-12 mx-8'>
           <h1 className={`${styles.title} font-bold`}>
             The Official J Dilla Legacy Collection
           </h1>
-          <div className={`${styles.description} text-center lg:mx-10`}>
+          <div className={`${styles.description} text-center`}>
             {`The J Dilla Legacy Collection is a web3 digital collection that creates a new way to experience the musical impact of J Dilla. It includes some of the most iconic artwork made by renowned artist Desiree Kelly, exclusive physical collectors items, and interactive music collectibles that cannot be found anywhere else. All of this will lead to an ultimate music Block Party experience in the metaverse. The collection is designed to give fans a glimpse into the life and work of one of hip-hop's most influential artists curated through the eyes of the person who knew him best - his mother, Ma Dukes.`}
           </div>
         </div>
 
-        <div className='flex flex-wrap justify-between gap-8 justify-center mt-10'>
+        <div className='flex flex-wrap lg:justify-between gap-8 justify-center mt-10'>
           <div className='text-center space-y-4 bg-white bg-opacity-10 rounded-md py-4 px-12'>
             <p className='tracking-widest text-2xl font-[600]'>J Dilla Anthology</p>
             <div className='relative w-64 h-64 drop-shadow-md'>
