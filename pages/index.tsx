@@ -26,7 +26,10 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className={`${styles.grid} cursor-pointer`}>
+        <div className='text-center space-y-4'>
+          <div className='relative w-64 h-64 rounded-md drop-shadow-md'>
+            <Image src="/images/crosswords.png" object-fit="contain" fill alt={'crosswords'} />
+          </div>
           <MintButton chainId={5} contractAddress={"0xe2597C2CdfA09c49757Fd20094A73F85b02baB87"} price={'.05'} />
         </div>
       </main>

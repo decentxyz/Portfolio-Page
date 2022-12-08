@@ -17,7 +17,7 @@ const MintButton = (props:any) => {
   }
 
   return (
-    <button onClick={mint}>Mint</button>
+    <button className="bg-violet-700 hover:bg-white hover:text-violet-700 px-5 py-1 rounded-full" onClick={mint}>Mint</button>
   );
 };
 
