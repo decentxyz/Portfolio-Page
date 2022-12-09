@@ -8,6 +8,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import Navbar from '../components/Navbar/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Analytics } from "@vercel/analytics/react";
 
 //make sure you are including the correct chain for your contract here in the rainbowkit config
 const { chains, provider, webSocketProvider } = configureChains(
@@ -53,6 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             overlayBlur: 'small',
           })} chains={chains} showRecentTransactions={true}>
         <ToastContainer />
+        <Analytics />
         <Navbar />
         <Component {...pageProps} />
       </RainbowKitProvider>
