@@ -57,11 +57,11 @@ const Home: NextPage = () => {
       <main className={`${styles.main} lg:mx-20 sm:mx-10 xs:mx-2`}>
         {/* make sure to update the images, contract information & most importantly (!) mint button props in the section below */}
         {/* in most cases, you will likely only have 1 contract that needs minting so just use the first container and delete the next two */}
-        <div className='mt-12 lg:mx-16 sm:mx-12 mx-8'>
-          <h1 className={`${styles.title} font-bold`}>
+        <div className='mt-12 lg:mx-20 mx-10'>
+          <h1 className={`${styles.title} font-medium`}>
             The Official J Dilla Legacy Collection
           </h1>
-          <div className={`${styles.description} text-center`}>
+          <div className={`${styles.description} text-center font-[300]`}>
             {`The J Dilla Legacy Collection is a web3 digital collection that creates a new way to experience the musical impact of J Dilla. It includes some of the most iconic artwork made by renowned artist Desiree Kelly, exclusive physical collectors items, and interactive music collectibles that cannot be found anywhere else. All of this will lead to an ultimate music Block Party experience in the metaverse. The collection is designed to give fans a glimpse into the life and work of one of hip-hop's most influential artists curated through the eyes of the person who knew him best - his mother, Ma Dukes.`}
           </div>
         </div>
