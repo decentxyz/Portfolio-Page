@@ -37,10 +37,14 @@ const Home: NextPage = () => {
     setMadukesMints(parseInt(await madukes.totalSupply()));
   }
 
+  // for batch minting
+  const [anthologyQuantity, setAnthologyQuantity] = useState(1);
+  const [ruffDraftQuantity, setRuffDraftQuantity] = useState(1);
+  const [maDukesQuantity, setMaDukesQuantity] = useState(1);
+
   useEffect(() => {
     updateContractInfo();
   }, [])
-  
 
   return (
     <div className={`${styles.container} background`}>
@@ -58,34 +62,37 @@ const Home: NextPage = () => {
         {/* make sure to update the images, contract information & most importantly (!) mint button props in the section below */}
         {/* in most cases, you will likely only have 1 contract that needs minting so just use the first container and delete the next two */}
         <div className='mt-12 lg:mx-20 mx-10'>
-          <h1 className={`${styles.title} font-medium`}>
-            The Official J Dilla Legacy Collection
-          </h1>
+          <div className='text-center'>
+            <p className='text-xl font-[400] uppercase tracking-widest'>The Official</p><h1 className={`${styles.title} font-[600]`}>J Dilla Legacy Collection</h1>
+          </div>
           <div className={`${styles.description} text-center font-[300]`}>
             {`The J Dilla Legacy Collection is a web3 digital collection that creates a new way to experience the musical impact of J Dilla. It includes some of the most iconic artwork made by renowned artist Desiree Kelly, exclusive physical collectors items, and interactive music collectibles that cannot be found anywhere else. All of this will lead to an ultimate music Block Party experience in the metaverse. The collection is designed to give fans a glimpse into the life and work of one of hip-hop's most influential artists curated through the eyes of the person who knew him best - his mother, Ma Dukes.`}
           </div>
         </div>
 
         <div className='flex flex-wrap lg:justify-between gap-8 justify-center mt-10'>
-          <div className='text-center space-y-4 bg-white bg-opacity-10 rounded-md py-4 px-12'>
-            <p className='tracking-widest text-2xl font-[600]'>J Dilla Anthology</p>
-            <div className='relative w-64 h-64 drop-shadow-md'>
-              <Image src="/images/crosswords.png" object-fit="contain" fill alt={'crosswords'} />
+          <div className='text-center space-y-3'>
+            <div className='h-80 w-80 relative'>
+              <div style={{ height: "100%", width: "100%" }}>
+                <Image className="rounded-lg" src="/images/crosswords.png" object-fit="contain" fill alt={'crosswords'} />
+              </div>
             </div>
-            <MintButton chainId={CHAINID} contractAddress={ANTHOLOGY} price={'.05'} />
-            <div className='space-y-2 w-64'>
+            <p className='tracking-widest text-2xl font-[600]'>J Dilla Anthology</p>
+            <MintButton chainId={CHAINID} contractAddress={ANTHOLOGY} price={.05} setQuantity={setAnthologyQuantity} quantity={anthologyQuantity} />
+            <div className='space-y-1 w-full p-2 border border-white rounded-md'>
               <p>Price: 0.05 ETH</p>
               <p>Minted: {anthologyMints}/3,333</p> 
               <p>1x Sneaker Contest Entry</p>
             </div>
           </div>
+
           {/* can be deleted if only using 1 contract */}
-          <div className='text-center space-y-4 bg-white bg-opacity-10 rounded-md py-4 px-12'>
+          <div className='text-center space-y-4 bg-gradient-to-tl from-slate-900 to-slate-700 rounded-lg py-4 px-12'>
             <p className='tracking-widest text-2xl font-[600]'>Ruff Draft</p>
             <div className='relative w-64 h-64 drop-shadow-md'>
               <Image src="/images/dilla-picture.jpg" object-fit="contain" fill alt={'crosswords'} />
             </div>
-            <MintButton chainId={CHAINID} contractAddress={RUFFDRAFT} price={'0.2'} />
+            <MintButton chainId={CHAINID} contractAddress={RUFFDRAFT} price={0.2} setQuantity={setRuffDraftQuantity} quantity={ruffDraftQuantity} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.2 ETH</p>
               <p>Minted: {ruffdraftMints}/639</p> 
@@ -94,12 +101,12 @@ const Home: NextPage = () => {
             </div>
           </div>
           {/* can be deleted if only using 1 contract */}
-          <div className='text-center space-y-4 bg-white bg-opacity-10 rounded-md py-4 px-12'>
+          <div className='text-center space-y-4 bg-gradient-to-br from-slate-900 to-slate-700 rounded-lg py-4 px-12'>
             <p className='tracking-widest text-2xl font-[600]'>Ma Dukes Says</p>
             <div className='relative w-64 h-64 drop-shadow-md'>
               <Image src="/images/animation.gif" object-fit="contain" fill alt={'crosswords'} />
             </div>
-            <MintButton chainId={CHAINID} contractAddress={MADUKES} price={'0.3'} />
+            <MintButton chainId={CHAINID} contractAddress={MADUKES} price={0.3} setQuantity={setMaDukesQuantity} quantity={maDukesQuantity} />
             <div className='space-y-2 w-64'>
               <p>Price: 0.3 ETH</p>
               <p>Minted: {madukesMints}/444</p> 

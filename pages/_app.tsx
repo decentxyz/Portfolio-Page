@@ -14,7 +14,7 @@ import { Analytics } from "@vercel/analytics/react";
 const { chains, provider, webSocketProvider } = configureChains(
   [
     chain.mainnet,
-    // chain.goerli,
+    chain.goerli,
     // chain.polygon,
     // chain.optimism,
     // chain.arbitrum,
