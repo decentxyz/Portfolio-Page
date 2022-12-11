@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import handleTxError from "../lib/handleTxError";
+import NumberTicker from "./NumberTicker";
 
 const MintButton = (props:any) => {
   const { data:signer } = useSigner();
@@ -27,8 +28,9 @@ const MintButton = (props:any) => {
       try {
         onSigning?.(true);
         const sdk = new DecentSDK(props.chainId, signer);
+        const price:number = props.price * props.quantity;
         const nftOne = await edition.getContract(sdk, props.contractAddress);
-        const tx = await nftOne.mint(1, { value: ethers.utils.parseEther(props.price) }); //could add a state variable + input number type here to enable batch minting
+        const tx = await nftOne.mint(props.quantity, { value: ethers.utils.parseEther(price.toString()) });
         const receipt = await tx.wait();
         await onSuccessfulMint(receipt);
       } catch (error) {
@@ -40,9 +42,10 @@ const MintButton = (props:any) => {
     }
   }
 
-  return (
-    <button className="bg-violet-700 hover:bg-white hover:text-violet-700 px-5 py-1 rounded-full font-[500] w-full" onClick={mint}>{isMinting ? "..." : "Mint"}</button>
-  );
+  return <div className="flex gap-4 py-2  ">
+    <button className="bg-white hover:bg-opacity-80 hover:drop-shadow-md text-indigo-700 px-5 py-1 rounded-full font-[500] w-full" onClick={mint}>{isMinting ? "..." : "Mint"}</button>
+    <NumberTicker quantity={props.quantity} setQuantity={props.setQuantity} />
+    </div>;
 };
 
 export default MintButton;

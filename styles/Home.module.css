@@ -41,9 +41,8 @@
 }
 
 .title {
-  margin: 3rem 0;
   line-height: 1;
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .title,
@@ -52,8 +51,8 @@
 }
 
 .description {
-  margin: 0 0 2rem;
-  line-height: 1.5;
+  margin: 3rem 1rem 2rem;
+  line-height: 1.75;
   font-size: 1.1rem;
 }
 
