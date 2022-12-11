@@ -42,6 +42,10 @@ const Home: NextPage = () => {
   const [ruffDraftQuantity, setRuffDraftQuantity] = useState(1);
   const [maDukesQuantity, setMaDukesQuantity] = useState(1);
 
+  const anthologyLink:string = "j-dilla-anthology";
+  const ruffDraftLink:string = "ruff-draft";
+  const maDukesLink:string = "ma-dukes-says";
+
   useEffect(() => {
     updateContractInfo();
   }, [])
@@ -78,10 +82,10 @@ const Home: NextPage = () => {
               </div>
             </div>
             <p className='tracking-widest text-2xl font-[600]'>J Dilla Anthology</p>
-            <MintButton chainId={CHAINID} contractAddress={ANTHOLOGY} price={.05} setQuantity={setAnthologyQuantity} quantity={anthologyQuantity} />
+            <MintButton chainId={CHAINID} contractAddress={ANTHOLOGY} price={.05} setQuantity={setAnthologyQuantity} quantity={anthologyQuantity} openseaLink={anthologyLink} />
             <div className='space-y-1 w-full p-2 border border-white rounded-md'>
               <p>Price: 0.05 ETH</p>
-              <p>Minted: {anthologyMints}/3,333</p> 
+              <p>Minted: {anthologyMints}/3,333</p>
             </div>
             <div className='text-left'>
               <li>1x Sneaker Contest Entry</li>
@@ -96,7 +100,7 @@ const Home: NextPage = () => {
               </div>
             </div>
             <p className='tracking-widest text-2xl font-[600]'>Ruff Draft</p>
-            <MintButton chainId={CHAINID} contractAddress={RUFFDRAFT} price={0.2} setQuantity={setRuffDraftQuantity} quantity={ruffDraftQuantity} />
+            <MintButton chainId={CHAINID} contractAddress={RUFFDRAFT} price={0.2} setQuantity={setRuffDraftQuantity} quantity={ruffDraftQuantity}  openseaLink={ruffDraftLink} />
             <div className='space-y-1 w-full p-2 border border-white rounded-md'>
               <p>Price: 0.2 ETH</p>
               <p>Minted: {ruffdraftMints}/639</p> 
@@ -115,8 +119,8 @@ const Home: NextPage = () => {
               </div>
             </div>
             <p className='tracking-widest text-2xl font-[600]'>Ma Dukes Says</p>
-            <MintButton chainId={CHAINID} contractAddress={MADUKES} price={0.3} setQuantity={setMaDukesQuantity} quantity={maDukesQuantity} />
-            <div className='space-y-1 w-full p-2 border border-white rounded-md'>
+            <MintButton chainId={CHAINID} contractAddress={MADUKES} price={0.3} setQuantity={setMaDukesQuantity} quantity={maDukesQuantity}  openseaLink={maDukesLink} />
+            <div className='space-y-1 w-full p-2 border border-white rounded-md text-center'>
               <p>Price: 0.3 ETH</p>
               <p>Minted: {madukesMints}/444</p> 
             </div>
