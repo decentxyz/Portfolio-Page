@@ -61,7 +61,7 @@ const Home: NextPage = () => {
       <main className={`${styles.main} lg:mx-20 sm:mx-10 xs:mx-2`}>
         {/* make sure to update the images, contract information & most importantly (!) mint button props in the section below */}
         {/* in most cases, you will likely only have 1 contract that needs minting so just use the first container and delete the next two */}
-        <div className='mt-12 lg:mx-20 mx-10'>
+        <div className='mt-12 lg:mx-20 sm:mx-4'>
           <div className='text-center'>
             <p className='text-xl font-[400] uppercase tracking-widest'>The Official</p><h1 className={`${styles.title} font-[600]`}>J Dilla Legacy Collection</h1>
           </div>
@@ -71,8 +71,8 @@ const Home: NextPage = () => {
         </div>
 
         <div className='flex flex-wrap lg:justify-between gap-8 justify-center mt-10'>
-          <div className='text-center space-y-3'>
-            <div className='h-80 w-80 relative'>
+          <div className='text-center space-y-3 w-80'>
+            <div className='h-80 relative'>
               <div style={{ height: "100%", width: "100%" }}>
                 <Image className="rounded-lg" src="/images/crosswords.png" object-fit="contain" fill alt={'crosswords'} />
               </div>
@@ -82,37 +82,48 @@ const Home: NextPage = () => {
             <div className='space-y-1 w-full p-2 border border-white rounded-md'>
               <p>Price: 0.05 ETH</p>
               <p>Minted: {anthologyMints}/3,333</p> 
-              <p>1x Sneaker Contest Entry</p>
+            </div>
+            <div className='text-left'>
+              <li>1x Sneaker Contest Entry</li>
             </div>
           </div>
 
           {/* can be deleted if only using 1 contract */}
-          <div className='text-center space-y-4 bg-gradient-to-tl from-slate-900 to-slate-700 rounded-lg py-4 px-12'>
-            <p className='tracking-widest text-2xl font-[600]'>Ruff Draft</p>
-            <div className='relative w-64 h-64 drop-shadow-md'>
-              <Image src="/images/dilla-picture.jpg" object-fit="contain" fill alt={'crosswords'} />
+          <div className='text-center space-y-3 w-80'>
+            <div className='h-80 relative'>
+              <div style={{ height: "100%", width: "100%" }}>
+                <Image className="rounded-lg" src="/images/dilla-picture.jpg" object-fit="contain" fill alt={'dilla'} />
+              </div>
             </div>
+            <p className='tracking-widest text-2xl font-[600]'>Ruff Draft</p>
             <MintButton chainId={CHAINID} contractAddress={RUFFDRAFT} price={0.2} setQuantity={setRuffDraftQuantity} quantity={ruffDraftQuantity} />
-            <div className='space-y-2 w-64'>
+            <div className='space-y-1 w-full p-2 border border-white rounded-md'>
               <p>Price: 0.2 ETH</p>
               <p>Minted: {ruffdraftMints}/639</p> 
-              <p>4x Sneaker Contest Entry</p>
-              <p>Shipped poster included and authenticated on chain via QR Code</p>
+            </div>
+            <div className='text-left'>
+              <li>4x Sneaker Contest Entry</li>
+              <li>Shipped poster included and authenticated on chain via QR Code</li>
             </div>
           </div>
+
           {/* can be deleted if only using 1 contract */}
-          <div className='text-center space-y-4 bg-gradient-to-br from-slate-900 to-slate-700 rounded-lg py-4 px-12'>
-            <p className='tracking-widest text-2xl font-[600]'>Ma Dukes Says</p>
-            <div className='relative w-64 h-64 drop-shadow-md'>
-              <Image src="/images/animation.gif" object-fit="contain" fill alt={'crosswords'} />
+          <div className='text-center space-y-3 w-80'>
+            <div className='h-80 relative'>
+              <div style={{ height: "100%", width: "100%" }}>
+              <Image className="rounded-md" src="/images/animation.gif" object-fit="contain" fill alt={'crosswords'} />
+              </div>
             </div>
+            <p className='tracking-widest text-2xl font-[600]'>Ma Dukes Says</p>
             <MintButton chainId={CHAINID} contractAddress={MADUKES} price={0.3} setQuantity={setMaDukesQuantity} quantity={maDukesQuantity} />
-            <div className='space-y-2 w-64'>
+            <div className='space-y-1 w-full p-2 border border-white rounded-md'>
               <p>Price: 0.3 ETH</p>
               <p>Minted: {madukesMints}/444</p> 
-              <p>6x Sneaker Contest Entry</p>
-              <p>Shipped poster included and authenticated on chain via QR Code</p>
-              <p>Hidden audio message recorded by Ma Dukes</p>
+            </div>
+            <div className='text-left'>
+              <li>6x Sneaker Contest Entry</li>
+              <li>Shipped poster included and authenticated on chain via QR Code</li>
+              <li>Hidden audio message recorded by Ma Dukes</li>
             </div>
           </div>
         </div>
