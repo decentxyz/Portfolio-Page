@@ -54,3 +54,8 @@ h1 {
   line-height: 24px;
   color: #000000;
 }
+
+::-moz-selection { background-color: #F1E7FC; 
+  color: #730FE6; } 
+  ::selection { background-color: #F1E7FC; 
+  color: #730FE6; }

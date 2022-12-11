@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import handleTxError from "../lib/handleTxError";
 import NumberTicker from "./NumberTicker";
-import OpenSeaButton from "./OpenSeaButton";
 
 const MintButton = (props:any) => {
   const { data:signer } = useSigner();
@@ -43,10 +42,9 @@ const MintButton = (props:any) => {
     }
   }
 
-  return <div className="flex gap-4 py-2 items-center">
-    <button className="bg-white hover:bg-opacity-80 hover:drop-shadow-md text-indigo-700 px-5 py-1 rounded-full font-[500] w-full" onClick={mint}>{isMinting ? "..." : "Mint"}</button>
-    <NumberTicker quantity={props.quantity} setQuantity={props.setQuantity} />
-    <OpenSeaButton openseaLink={props.openseaLink} />
+  return <div className="flex gap-4 py-2 items-center px-4 sm:px-0">
+      <button className="bg-white hover:bg-opacity-80 hover:drop-shadow-md text-indigo-700 px-5 py-1 rounded-full font-[600] w-full text-lg uppercase" onClick={mint}>{isMinting ? "..." : "Mint"}</button>
+      <NumberTicker quantity={props.quantity} setQuantity={props.setQuantity} />
     </div>;
 };
 
