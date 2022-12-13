@@ -12,17 +12,17 @@ import MarketplaceButtons from '../components/MarketplaceButtons';
 const Home: NextPage = () => {
   const RPC = "https://ethereum-goerli-rpc.allthatnode.com"; //for testing on Ethereum goerli; do not need for mainnet - other chains have different RPC endpoints you'll have to input here if contract is not on Ethereum mainnet
 
-  const CHAINID = 1; //change to 5 to test on goerli
+  const CHAINID = 5; //change to 5 to test on goerli
   
   {/* make sure to update for your contract address; if you created your contract through the HQ, you can grab its address off the Success or Admin page */}
-  const contractAddress = '0x5eB804cf3f0c6f97e99631961A53bCad2bbA4851';
+  const contractAddress = '0x2A1583aA340Ef05E857384108BDEd279beb2fDdB';
   {/* can be deleted if only using 1 contract */}
 
   const [contractMints, setContractMints] = useState(0);
   
   // required to display the mint counts you'll see below || can add any other contract data via a similar method
   const updateContractInfo = async () => {
-    const provider = ethers.getDefaultProvider(); //add RPC as parameter for goerli
+    const provider = ethers.getDefaultProvider(RPC); //add RPC as parameter for goerli
     const sdk = new DecentSDK(CHAINID, provider);
     const contract = await edition.getContract(sdk, contractAddress);
 
@@ -30,9 +30,9 @@ const Home: NextPage = () => {
   }
 
   // for batch minting
-  const [anthologyQuantity, setAnthologyQuantity] = useState(1);
+  const [mintQuantity, setMintQuantity] = useState(1);
 
-  const openseaLink:string = "j-dilla-anthology";
+  // const openseaLink:string = "j-dilla-anthology";
 
   useEffect(() => {
     updateContractInfo();
@@ -55,13 +55,13 @@ const Home: NextPage = () => {
           {/* make sure to update the images, contract information & most importantly (!) mint button props in the section below */}
           {/* in most cases, you will likely only have 1 contract that needs minting so just use the first container and delete the next two */}
           <div className='lg:max-w-1/2 w-full lg:mx-20'>
-            <h1 className={`${styles.title} font-[600]`}>J Dilla Legacy Collection</h1>
+            <h1 className={`${styles.title} font-[600]`}>Custom Mint Tutorial</h1>
             <div className={`${styles.description} font-[300]`}>
-              {`The J Dilla Legacy Collection is a web3 digital collection that creates a new way to experience the musical impact of J Dilla. It includes some of the most iconic artwork made by renowned artist Desiree Kelly, exclusive physical collectors items, and interactive music collectibles that cannot be found anywhere else.`}
+              {`Showing how easy it is to setup a custom mint site with Decent.`}
             </div>
             <div className='px-10 w-72 space-y-1 p-2 border border-white rounded-md'>
-              <div className='grid grid-cols-2'><p>Price:</p><p className='text-right'>0.05 ETH</p></div>
-              <div className='grid grid-cols-2'><p>Minted:</p><p className='text-right'>{contractMints} / 3,333</p></div>
+              <div className='grid grid-cols-2'><p>Price:</p><p className='text-right'>0.002 ETH</p></div>
+              <div className='grid grid-cols-2'><p>Minted:</p><p className='text-right'>{contractMints} / 10</p></div>
             </div>
           </div>
 
@@ -69,11 +69,11 @@ const Home: NextPage = () => {
             <div className='text-center space-y-3 w-96'>
               <div className='h-96 relative'>
                 <div style={{ height: "100%", width: "100%" }}>
-                  <Image className="rounded-lg drop-shadow-lg" src="/images/crosswords.png" object-fit="contain" fill alt={'crosswords'} />
+                  <Image className="rounded-lg drop-shadow-lg" src="/images/gradient-logo.png" object-fit="contain" fill alt={'nft'} />
                 </div>
               </div>
-              <MintButton chainId={CHAINID} contractAddress={contractAddress} price={.05} setQuantity={setAnthologyQuantity} quantity={anthologyQuantity} openseaLink={openseaLink} />
-              <MarketplaceButtons openseaLink={openseaLink} contractAddress={contractAddress} />
+              <MintButton chainId={CHAINID} contractAddress={contractAddress} price={.002} setQuantity={setMintQuantity} quantity={mintQuantity} />
+              <MarketplaceButtons contractAddress={contractAddress} />
             </div>
           </div>
         </div>

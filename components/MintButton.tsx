@@ -20,7 +20,7 @@ const MintButton = (props:any) => {
 
   const onSuccessfulMint = async (receipt:any) => {
     onSuccess?.(receipt);
-    toast.success("Minted successfully. Please fill out form below to receive your physical goods!");
+    toast.success("Minted successfully.");
   }
 
   const mint = async () => {
