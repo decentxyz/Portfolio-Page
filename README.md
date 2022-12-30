@@ -1,6 +1,10 @@
-This is a [DecentSDK](https://docs.decent.xyz) + [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
+This is a [DecentSDK](https://docs.decent.xyz) + [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project).
 
-The purpose of this repository is to get you up & running quickly with the Decent SDK (@decent.xyz/sdk).  The primary functionality demonstrated in this repo is the ability to deploy Decent's 721A smart contract and fetch the address.  The deployment function used here can be copied to launch each of the other contracts included in the SDK.  This repository also demonstrates the Metadata Renderer module.
+The purpose of this repository is to get you up & running quickly with a custom minting page using the Decent SDK (@decent.xyz/sdk).  The primary functionality demonstrated in this repo is the ability to mint NFTs from Decent's 721A & 4907 contracts.  The deployment function used here can be copied to launch each of the other contracts included in the SDK.  This repository also demonstrates the Metadata Renderer module.
+
+For a video tutorial on how to get up and running in <10min, please check out the [Decent YouTube channel](https://www.youtube.com/watch?v=s72S5_5HWAk).
+
+Note: the BURBLE branch uses a different wallet provider: [Privy Auth](https://www.privy.io/).  For a clear depiction as to how Privy differs from Rainbow, check out our [Social Auth extension](https://mint.onebigidea.xyz/) of this repository.
 
 ## Getting Started
 
