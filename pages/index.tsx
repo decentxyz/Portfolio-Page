@@ -23,7 +23,7 @@ const Home: NextPage = () => {
   console.log(NFTs)
 
   return (
-    <div className={`${styles.container} background`}>
+    <div className={`${styles.container}`}>
       {/* set metadata; reminder to also clear out the Burble images from public/images */}
       <Head>
         <title>Mint Decent</title>
@@ -34,15 +34,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/images/decent-icon.png" />
       </Head>
 
-      <main className={`${styles.main}`}>
-        <div className='flex flex-wrap gap-8'>
-          {NFTs.slice(0,2).map((nft, i) => {
+      <main className='sm:pt-32 pt-20'>
+        <h1 className='text-2xl font-[500] border-b border-black'>Reveel Creator Grants Submissions</h1>
+        <div className='flex flex-wrap gap-8 justify-center pt-8'>
+          {NFTs.map((nft, i) => {
             return (
               <NFTCard
                 key={i}
                 contractAddress={nft.address}
                 chainId={nft.chainId}
-                creator={nft.creator?.ensName || nft.creator?.address}
+                creator={nft.creator?.ensName || `${nft.creator?.address.slice(0, 6)}...${nft.creator?.address.slice(38, 42)}`}
                 image={nft.metadata?.image}
                 name={nft.data.name}
                 mintCount={nft.data.totalSupply}
@@ -56,7 +57,6 @@ const Home: NextPage = () => {
         </div>
       </main>
 
-      {/* would appreciate the footer s/o but do what you will 🤝 */}
       <footer className='py-8 border-t border-white text-white justify-center flex items-center'>
        <p className='pr-2 tracking-widest text-sm font-[400]'>Powered by </p>
        <Link href="http://decent.xyz/" className='pt-1'>

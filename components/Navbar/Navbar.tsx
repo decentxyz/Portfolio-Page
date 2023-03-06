@@ -29,7 +29,7 @@ const Navbar = () => {
         <NavItem href="http://decent.xyz/" openInNewTab><Image width={100} height={40} src="/images/decent.png" alt="decent" /></NavItem>  
         <div className="flex items-center gap-4">
           <ConnectButton />
-          <Link href='https://github.com/decentxyz/Minting-Page' target='_blank'>
+          <Link href='https://github.com/decentxyz/Portfolio-Page' target='_blank'>
             <Image src='/images/github-mark-white.svg' height={20} width={20} alt='link to repository' />
           </Link>
           </div>
