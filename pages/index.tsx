@@ -3,40 +3,24 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
-import MintButton from "../components/MintButton";
 import Link from 'next/link';
-import { DecentSDK, edition } from "@decent.xyz/sdk";
-import { ethers } from "ethers";
 import MarketplaceButtons from '../components/MarketplaceButtons';
+import { getReleases } from '../lib/GetReleases';
+import NFTCard from '../components/NFTCard';
 
 const Home: NextPage = () => {
-  const RPC = "https://ethereum-goerli-rpc.allthatnode.com"; //for testing on Ethereum goerli; do not need for mainnet - other chains have different RPC endpoints you'll have to input here if contract is not on Ethereum mainnet
-
-  const CHAINID = 5; //change to 5 to test on goerli
-  
-  {/* make sure to update for your contract address; if you created your contract through the HQ, you can grab its address off the Success or Admin page */}
-  const contractAddress = '0x2A1583aA340Ef05E857384108BDEd279beb2fDdB';
-  {/* can be deleted if only using 1 contract */}
-
-  const [contractMints, setContractMints] = useState(0);
-  
-  // required to display the mint counts you'll see below || can add any other contract data via a similar method
-  const updateContractInfo = async () => {
-    const provider = ethers.getDefaultProvider(RPC); //add RPC as parameter for goerli
-    const sdk = new DecentSDK(CHAINID, provider);
-    const contract = await edition.getContract(sdk, contractAddress);
-
-    setContractMints(parseInt(await contract.totalSupply()));
-  }
-
-  // for batch minting
-  const [mintQuantity, setMintQuantity] = useState(1);
-
-  // const openseaLink:string = "j-dilla-anthology";
+  const [NFTs, setNFTs] = useState<any[]>([]);
+  const projectSymbol = "RCGS1";
 
   useEffect(() => {
-    updateContractInfo();
-  }, []);
+    async function loadData() {
+      let nfts = await getReleases(projectSymbol)
+      if (nfts && nfts.length > 0) setNFTs(nfts)
+    }
+    loadData();
+  }, [])
+
+  console.log(NFTs)
 
   return (
     <div className={`${styles.container} background`}>
@@ -45,37 +29,30 @@ const Home: NextPage = () => {
         <title>Mint Decent</title>
         <meta
           name="description"
-          content='Custom mint site by decent.xyz for creators to easily deploy extermely customizable minting sites.'
+          content='Custom mint site by decent.xyz for creators to easily deploy customizable minting sites.'
         />
         <link rel="icon" href="/images/decent-icon.png" />
       </Head>
 
       <main className={`${styles.main}`}>
-        <div className='lg:flex items-start lg:gap-20 gap-12 lg:mt-20 mt-12'>
-          {/* make sure to update the images, contract information & most importantly (!) mint button props in the section below */}
-          {/* in most cases, you will likely only have 1 contract that needs minting so just use the first container and delete the next two */}
-          <div className='lg:max-w-1/2 w-full lg:mx-20'>
-            <h1 className={`${styles.title} font-[600]`}>Custom Mint Tutorial</h1>
-            <div className={`${styles.description} font-[300]`}>
-              {`Showing how easy it is to setup a custom mint site with Decent.`}
-            </div>
-            <div className='px-10 w-72 space-y-1 p-2 border border-white rounded-md'>
-              <div className='grid grid-cols-2'><p>Price:</p><p className='text-right'>0.002 ETH</p></div>
-              <div className='grid grid-cols-2'><p>Minted:</p><p className='text-right'>{contractMints} / 10</p></div>
-            </div>
-          </div>
-
-          <div className='flex w-full justify-center mt-12 lg:mt-0'>
-            <div className='text-center space-y-3 w-96'>
-              <div className='h-96 relative'>
-                <div style={{ height: "100%", width: "100%" }}>
-                  <Image className="rounded-lg drop-shadow-lg" src="/images/gradient-logo.png" object-fit="contain" fill alt={'nft'} />
-                </div>
-              </div>
-              <MintButton chainId={CHAINID} contractAddress={contractAddress} price={.002} setQuantity={setMintQuantity} quantity={mintQuantity} />
-              <MarketplaceButtons contractAddress={contractAddress} />
-            </div>
-          </div>
+        <div className='flex flex-wrap gap-8'>
+          {NFTs.slice(0,2).map((nft, i) => {
+            return (
+              <NFTCard
+                key={i}
+                contractAddress={nft.address}
+                chainId={nft.chainId}
+                creator={nft.creator?.ensName || nft.creator?.address}
+                image={nft.metadata?.image}
+                name={nft.data.name}
+                mintCount={nft.data.totalSupply}
+                type={nft.type}
+                tokenPrice={nft.data.tokenPrice}
+                mimeType={nft.mimeType}
+                animationUrl={nft.metadata?.animation_url}
+              />
+            );
+          })}
         </div>
       </main>
 

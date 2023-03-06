@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import handleTxError from "../lib/handleTxError";
-import NumberTicker from "./NumberTicker";
 
 const MintButton = (props:any) => {
   const { data:signer } = useSigner();
@@ -23,6 +22,8 @@ const MintButton = (props:any) => {
     toast.success("Minted successfully.");
   }
 
+  console.log(signer)
+
   const mint = async () => {
     if (signer) {
       try {
@@ -30,6 +31,7 @@ const MintButton = (props:any) => {
         const sdk = new DecentSDK(props.chainId, signer);
         const price:number = props.price * props.quantity;
         const nftOne = await edition.getContract(sdk, props.contractAddress);
+        console.log(nftOne)
         const tx = await nftOne.mint(props.quantity, { value: ethers.utils.parseEther(price.toString()) });
         const receipt = await tx.wait();
         await onSuccessfulMint(receipt);
@@ -43,8 +45,8 @@ const MintButton = (props:any) => {
   }
 
   return <div className="flex gap-4 py-2 items-center px-4 sm:px-0">
+    <p>{props.chainId}</p>
       <button className="bg-white hover:bg-opacity-80 hover:drop-shadow-md text-indigo-700 px-5 py-1 rounded-full font-[600] w-full text-lg uppercase" onClick={mint}>{isMinting ? "..." : "Mint"}</button>
-      <NumberTicker quantity={props.quantity} setQuantity={props.setQuantity} />
     </div>;
 };
 
