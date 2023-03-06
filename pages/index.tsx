@@ -4,7 +4,6 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import MarketplaceButtons from '../components/MarketplaceButtons';
 import { getReleases } from '../lib/GetReleases';
 import NFTCard from '../components/NFTCard';
 
@@ -22,7 +21,7 @@ const Home: NextPage = () => {
 
   console.log(NFTs)
 
-  return (
+  return <>
     <div className={`${styles.container}`}>
       {/* set metadata; reminder to also clear out the Burble images from public/images */}
       <Head>
@@ -56,15 +55,14 @@ const Home: NextPage = () => {
           })}
         </div>
       </main>
-
-      <footer className='py-8 border-t border-white text-white justify-center flex items-center'>
-       <p className='pr-2 tracking-widest text-sm font-[400]'>Powered by </p>
-       <Link href="http://decent.xyz/" className='pt-1'>
-          <Image src='/images/decent.png' height={12} width={85} alt='Decent 💪' />
-        </Link>
-      </footer>
     </div>
-  );
+    <footer className='mt-8 py-4 bg-black text-white justify-center flex items-center'>
+    <p className='pr-2 tracking-widest text-sm font-[400]'>Powered by </p>
+    <Link href="http://decent.xyz/" className='pt-1'>
+        <Image src='/images/decent.png' height={12} width={85} alt='Decent 💪' />
+      </Link>
+    </footer>
+  </>;
 };
 
 export default Home;
