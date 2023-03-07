@@ -26,7 +26,11 @@ const Navbar = () => {
   return (
     <>
       <nav className={`${styles.navbar} w-full flex flex-wrap items-center sm:justify-between justify-center`} >
-        <NavItem href="http://decent.xyz/" openInNewTab><Image width={100} height={40} src="/images/decent.png" alt="decent" /></NavItem>  
+        <div className="flex items-center gap-4">
+        <NavItem href="http://decent.xyz/" openInNewTab><Image width={100} height={40} src="/images/decent.png" alt="decent" /></NavItem>
+        <p className="text-white">X</p>
+        <NavItem href="https://www.r3vl.xyz/" openInNewTab><Image width={35} height={35} src="/images/logo-white.svg" alt="reveel" /></NavItem>
+        </div>
         <div className="flex items-center gap-4">
           <ConnectButton />
           <Link href='https://github.com/decentxyz/Portfolio-Page' target='_blank'>
