@@ -10,12 +10,12 @@ import NFTCard from '../components/NFTCard';
 const Home: NextPage = () => {
   const [NFTs, setNFTs] = useState<any[]>([]);
   const [sum, setSum] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const projectSymbol = "RCGS1";
+  const projectSymbol1 = "RCGS1";
+  const projectSymbol2 = "RBEP1";
 
   useEffect(() => {
     async function loadData() {
-      let nfts = await getReleases(projectSymbol)
+      let nfts = await getReleases(projectSymbol1, projectSymbol2)
       if (nfts && nfts.length > 0) {
         let sorted = nfts.sort((a,b) => b.data.totalSupply - a.data.totalSupply);
         let total = nfts.reduce((acc, curr) => acc + curr.data.totalSupply, 0);
