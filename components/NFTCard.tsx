@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MintButton from "./MintButton";
 import NFTMedia from "./NFTMedia";
+import getIpfsLink from "../lib/getIpfsLink";
 
 interface Card {
   contractAddress: string;
@@ -29,10 +30,10 @@ const NFTCard = ({contractAddress, chainId, creator, image, animationUrl, name, 
   return <>
     <div className="relative bg-white drop-shadow-md rounded-md">
       <div className="aspect-square">
-        <NFTMedia ipfsImage={image} ipfsVideo={animationUrl} mimeType={mimeType} />
+        <NFTMedia ipfsImage={image} ipfsAnimation={animationUrl} mimeType={mimeType} />
       </div>
       <div className="absolute bottom-0 left-2 w-[344px] bg-white text-black opacity-80 h-fit px-4 pt-2 mb-2 rounded-md">     
-        <p className="text-2xl font-[500]">{name}</p>
+        <p className="text-2xl font-[500] pr-4 truncate">{name}</p>
         <div className="flex justify-between items-center">
           <p className="tracking-widest">{creator}</p>
           <Link className="flex gap-2" href={`https://hq.decent.xyz/${chainId}/${contractType}/${contractAddress}`}>
@@ -45,6 +46,13 @@ const NFTCard = ({contractAddress, chainId, creator, image, animationUrl, name, 
           <p><span className="text-sm">Minted:</span><span className="font-[500]"> {mintCount}</span></p>
         </div>
         <MintButton chainId={chainId} contractAddress={contractAddress} price={tokenPrice} quantity={1} />
+        {mimeType.includes('audio') &&
+          <audio
+            controls
+            src={getIpfsLink(animationUrl)}
+            className="h-4 my-1"
+          ></audio>
+          }
       </div>
     </div>
   </>

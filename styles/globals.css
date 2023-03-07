@@ -59,3 +59,27 @@ h1 {
   color: #730FE6; } 
   ::selection { background-color: #F1E7FC; 
   color: #730FE6; }
+
+audio::-webkit-media-controls-start-playback-button {
+  display: none;
+}
+
+audio::-webkit-media-controls-end-playback-button {
+  display: none;
+}
+
+audio::-webkit-media-controls-play-button {
+  display: block;
+}
+
+audio::-webkit-media-controls-pause-button {
+  display: none;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  display: none;
+}
+
+audio::-webkit-media-controls-time-remaining-display {
+  display: none;
+}

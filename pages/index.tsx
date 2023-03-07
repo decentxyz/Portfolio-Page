@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
@@ -10,6 +10,7 @@ import NFTCard from '../components/NFTCard';
 const Home: NextPage = () => {
   const [NFTs, setNFTs] = useState<any[]>([]);
   const [sum, setSum] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const projectSymbol = "RCGS1";
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const Home: NextPage = () => {
       }
     }
     loadData();
-  }, [])
+  }, []);
 
   return <>
     <div className={`${styles.container} min-h-screen`}>

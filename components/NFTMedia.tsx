@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 
 interface NFTMedia {
   ipfsImage: string;
-  ipfsVideo: string;
+  ipfsAnimation: string;
   mimeType: string;
 }
 
-const NFTMedia = ({ipfsImage, ipfsVideo, mimeType}: NFTMedia) => {
+const NFTMedia = ({ipfsImage, ipfsAnimation, mimeType}: NFTMedia) => {
   const [mediaType, setMediaType] = useState<string>('image');
   const [src, setSrc] = useState<string>(ipfsImage)
 
@@ -33,7 +33,7 @@ const NFTMedia = ({ipfsImage, ipfsVideo, mimeType}: NFTMedia) => {
           onError={() => setSrc('/images/errorImage.png')}
         /> :   
       mediaType === 'video' ? 
-        <video className="max-h-[360px]" height={360} width={360} controls src={getIpfsLink(ipfsVideo)}></video> : 
+        <video className="max-h-[360px]" height={360} width={360} controls src={getIpfsLink(ipfsAnimation)}></video> : 
         <div className="relative">
         <Image className="rounded-md" src="/images/card1.png" alt="" width={360} height={360} />
         <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-[500] text-sm tracking-widest">Unsupported File Type</p>

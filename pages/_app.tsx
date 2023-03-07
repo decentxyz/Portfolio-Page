@@ -13,6 +13,13 @@ import Navbar from '../components/Navbar/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Analytics } from "@vercel/analytics/react";
+import {
+  DispatchPlayerContext,
+  PlayerContext,
+  playerInitialState,
+  playerReducer,
+} from "@decent.xyz/ux-components";
+import { useReducer } from 'react';
 
 const { chains, provider } = configureChains(
   [mainnet],
@@ -34,13 +41,18 @@ const wagmiClient = createClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [state, dispatch] = useReducer(playerReducer, playerInitialState);
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        <ToastContainer />
-        <Analytics />
-        <Navbar />
-        <Component {...pageProps} />
+        <PlayerContext.Provider value={state}>
+            <DispatchPlayerContext.Provider value={dispatch}>
+            <ToastContainer />
+            <Analytics />
+            <Navbar />
+            <Component {...pageProps} />
+          </DispatchPlayerContext.Provider>
+        </PlayerContext.Provider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
