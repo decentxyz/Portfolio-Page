@@ -9,20 +9,24 @@ import NFTCard from '../components/NFTCard';
 
 const Home: NextPage = () => {
   const [NFTs, setNFTs] = useState<any[]>([]);
+  const [sum, setSum] = useState(0);
   const projectSymbol = "RCGS1";
 
   useEffect(() => {
     async function loadData() {
       let nfts = await getReleases(projectSymbol)
-      if (nfts && nfts.length > 0) setNFTs(nfts)
+      if (nfts && nfts.length > 0) {
+        let sorted = nfts.sort((a,b) => b.data.totalSupply - a.data.totalSupply);
+        let total = nfts.reduce((acc, curr) => acc + curr.data.totalSupply, 0);
+        setNFTs(sorted);
+        setSum(total);
+      }
     }
     loadData();
   }, [])
 
-  console.log(NFTs)
-
   return <>
-    <div className={`${styles.container}`}>
+    <div className={`${styles.container} min-h-screen`}>
       {/* set metadata; reminder to also clear out the Burble images from public/images */}
       <Head>
         <title>Mint Decent</title>
@@ -34,23 +38,37 @@ const Home: NextPage = () => {
       </Head>
 
       <main className='sm:pt-32 pt-20'>
-        <h1 className='text-2xl font-[500] border-b border-black'>Reveel Creator Grants Submissions</h1>
-        <div className='flex flex-wrap gap-8 justify-center pt-8'>
+        <div className='pb-8 px-12 text-lg'>
+          <h1 className='w-full sm:text-5xl text-3xl pb-4'>Reveel Creator Grants Submissions</h1>
+          <p className='py-2'>Total Votes: <b>{sum}</b></p>
+          <p className='py-b'>Current Grant Recipients:
+            {NFTs.length > 0 &&
+            <ul className='pl-4'>
+              <li>1. <b>{NFTs[0]?.data.name}</b>: <span className='text-violet-500'>$4,000 USDC</span></li>
+              <li>2. <b>{NFTs[1]?.data.name}</b>: <span className='text-violet-500'>$750 USDC</span></li>
+              <li>3. <b>{NFTs[2]?.data.name}</b>: <span className='text-violet-500'>$250 USDC</span></li>
+            </ul>
+            }
+          </p>
+        </div>
+        <div className='flex flex-wrap gap-12 justify-center pt-8'>
           {NFTs.map((nft, i) => {
             return (
-              <NFTCard
-                key={i}
-                contractAddress={nft.address}
-                chainId={nft.chainId}
-                creator={nft.creator?.ensName || `${nft.creator?.address.slice(0, 6)}...${nft.creator?.address.slice(38, 42)}`}
-                image={nft.metadata?.image}
-                name={nft.data.name}
-                mintCount={nft.data.totalSupply}
-                type={nft.type}
-                tokenPrice={nft.data.tokenPrice}
-                mimeType={nft.mimeType}
-                animationUrl={nft.metadata?.animation_url}
-              />
+              <div key={i} className='relative'>
+                <NFTCard
+                  contractAddress={nft.address}
+                  chainId={nft.chainId}
+                  creator={nft.creator?.ensName || `${nft.creator?.address.slice(0, 6)}...${nft.creator?.address.slice(38, 42)}`}
+                  image={nft.metadata?.image}
+                  name={nft.data.name}
+                  mintCount={nft.data.totalSupply}
+                  type={nft.type}
+                  tokenPrice={nft.data.tokenPrice}
+                  mimeType={nft.mimeType}
+                  animationUrl={nft.metadata?.animation_url}
+                />
+                <p className="absolute top-4 left-4 text-2xl text-white font-bold">{i+1}</p>
+              </div>
             );
           })}
         </div>

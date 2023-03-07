@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import getIpfsLink from "../lib/getIpfsLink";
 import MintButton from "./MintButton";
+import NFTMedia from "./NFTMedia";
 
 interface Card {
   contractAddress: string;
@@ -25,21 +25,11 @@ const NFTCard = ({contractAddress, chainId, creator, image, animationUrl, name, 
 
   const active = typeIndex[0].indexOf(type);
   const contractType = typeIndex[1][active];
-
-  const imageTypes = [
-    "image/png",
-    "image/jpeg",
-    "image/gif",
-    "image/jpg",
-  ]
   
   return <>
-    <div className="relative">
+    <div className="relative bg-white drop-shadow-md rounded-md">
       <div className="aspect-square">
-        {mimeType.includes("video") ?
-          <video className="max-h-[360px]" height={360} width={360} controls src={getIpfsLink(animationUrl)}></video> :
-          <Image className="rounded-md" src={getIpfsLink(image)} alt={name} width={360} height={360} />
-        }
+        <NFTMedia ipfsImage={image} ipfsVideo={animationUrl} mimeType={mimeType} />
       </div>
       <div className="absolute bottom-0 left-2 w-[344px] bg-white text-black opacity-80 h-fit px-4 pt-2 mb-2 rounded-md">
         <div className="flex justify-between items-center">
