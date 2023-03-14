@@ -41,6 +41,7 @@ const Home: NextPage = () => {
       <main className='sm:pt-32 pt-20'>
         <div className='pb-8 px-12 text-lg'>
           <h1 className='w-full sm:text-5xl text-3xl pb-4'>Reveel Creator Grants Submissions</h1>
+          <p className="text-violet-500 font-[500]">The Reveel Creator Grants Competition has ended. Let us know what you'd like to see next on this page!</p>
           <p className='py-2'>Total Votes: <b>{sum}</b></p>
           <p>Current Grant Recipients:
           <p className='py-2 text-sm'>Note: Each wallet can only register a maximum of 10 votes. Count authenticity will be evaluated at the end of the competition.</p>
@@ -48,7 +49,7 @@ const Home: NextPage = () => {
             <ul className='pl-4'>
               <li>1. <b>{NFTs[0]?.data.name}</b>: <span className='text-violet-500'>$4,000 USDC</span></li>
               <li>2. <b>{NFTs[1]?.data.name}</b>: <span className='text-violet-500'>$750 USDC</span></li>
-              <li>3. <b>{NFTs[2]?.data.name}</b>: <span className='text-violet-500'>$250 USDC</span></li>
+              <li>3. <b>{NFTs[3]?.data.name}</b>: <span className='text-violet-500'>$250 USDC</span></li>
             </ul>
             }
           </p>
