@@ -3,6 +3,7 @@ import Link from "next/link";
 import MintButton from "./MintButton";
 import NFTMedia from "./NFTMedia";
 import getIpfsLink from "../lib/getIpfsLink";
+import getChainIcon from "../lib/getChainIcon";
 
 interface Card {
   contractAddress: string;
@@ -42,7 +43,10 @@ const NFTCard = ({contractAddress, chainId, creator, image, animationUrl, name, 
           </Link>
         </div>
         <div className="flex justify-between pt-2">
-          <p><span className="text-sm">Price:</span><span className="font-[500]"> {tokenPrice} ETH</span></p>
+          <div className="flex items-center gap-1">
+            <p className="text-sm">Price:</p><p className="font-[500]"> {tokenPrice} ETH</p>
+            <Image width={18} height={18} src={getChainIcon(chainId)} alt="chain" />
+          </div>
           <p><span className="text-sm">Minted:</span><span className="font-[500]"> {mintCount}</span></p>
         </div>
         <MintButton chainId={chainId} contractAddress={contractAddress} price={tokenPrice} quantity={1} />

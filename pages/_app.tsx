@@ -22,7 +22,7 @@ import {
 import { useReducer } from 'react';
 
 const { chains, provider } = configureChains(
-  [mainnet],
+  [mainnet, polygon, optimism, arbitrum],
   [
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
     publicProvider()

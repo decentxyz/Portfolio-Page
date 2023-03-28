@@ -1,14 +1,17 @@
 import { DecentSDK, edition } from "@decent.xyz/sdk";
-import { useSigner, useAccount } from "wagmi";
+import { useSigner, useAccount, allChains, useSwitchNetwork, useNetwork } from "wagmi";
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import handleTxError from "../lib/handleTxError";
+import isWalletReadyToSign from "../lib/isWalletReady";
 
 const MintButton = (props:any) => {
   const { data:signer } = useSigner();
   const { address:account } = useAccount();
   const [isMinting, setIsMinting] = useState(false);
+  const { switchNetwork } = useSwitchNetwork();
+  const { chain: activeChain } = useNetwork();
 
   const onSigning = (isMinting:boolean) => {
     setIsMinting(isMinting || false);
@@ -24,6 +27,10 @@ const MintButton = (props:any) => {
   }
 
   const mint = async () => {
+    const desiredChain = allChains.find((c) => c.id == props.chainId);
+    if (!isWalletReadyToSign(signer, activeChain, desiredChain, switchNetwork))
+      return;
+
     if (signer && account) {
       try {
         onSigning?.(true);
