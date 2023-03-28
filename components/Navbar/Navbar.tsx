@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Image from "next/image";
 import styles from "./navbar.module.css";
+import { RxDotFilled } from "react-icons/rx";
 
 interface NavItemProps {
   href: string;
@@ -15,7 +16,7 @@ const Navbar = () => {
     return (
       <Link passHref href={href} target={openInNewTab ? "_blank" : undefined} rel={openInNewTab ? "noreferrer" : undefined}>
         <p
-          className={`uppercase tracking-widest font-[500] text-base hover:text-black text-white p-2`}
+          className={`tracking-widest font-[380] text-base hover:text-opacity-80 text-white p-2`}
         >
           {children}
         </p>
@@ -26,8 +27,14 @@ const Navbar = () => {
   return (
     <>
       <nav className={`${styles.navbar} w-full flex flex-wrap items-center sm:justify-between justify-center`} >
-        <div className="flex items-center gap-4">
-        <NavItem href="http://decent.xyz/" openInNewTab><Image width={100} height={40} src="/images/decent.png" alt="decent" /></NavItem>
+        <div className="flex gap-12 items-center">
+          <NavItem href="http://decent.xyz/" openInNewTab><Image width={100} height={40} src="/images/decent.png" alt="decent" /></NavItem>
+          
+          <div className="gap-1 flex items-center">
+            <RxDotFilled className="text-green-500 text-xl" />
+            <p className="tracking-widest font-[500] text-base hover:text-opacity-80 text-white p-2">What others are making</p>
+          </div>
+          <NavItem href="http://ai.decent.xyz/" openInNewTab><span>Make something</span></NavItem>
         </div>
         <div className="flex items-center gap-4">
           <ConnectButton />

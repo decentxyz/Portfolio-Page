@@ -40,8 +40,8 @@ const Home: NextPage = () => {
       <main className='sm:pt-32 pt-20'>
         <div className='pb-8 px-12 text-lg'>
           <h1 className='w-full sm:text-5xl text-3xl pb-4'>Decent x  DALL·E 2</h1>
-          <p className="text-violet-500 font-[500]">Create yours <a href='https://ai.decent.xyz/' target="_blank" rel="noreferrer" className='border-b border-violet-500 hover:border-b-2 hover:border-violet-300 hover:text-violet-300'>here!</a></p>
-          <p className='py-2'>Featured NFTs Minted: <b>{sum}</b></p>
+          <p className="text-violet-500 font-[500]">Community created collections.</p>
+          {/* <p className='py-2'>Featured NFTs Minted: <b>{sum}</b></p> */}
         </div>
         <div className='flex flex-wrap gap-12 justify-center pt-8'>
           {NFTs.map((nft, i) => {

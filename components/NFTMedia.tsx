@@ -30,7 +30,7 @@ const NFTMedia = ({ipfsImage, ipfsAnimation, mimeType}: NFTMedia) => {
           blurDataURL={"/images/placeholder.png"}
           alt="" width={360} 
           height={360}
-          onError={() => setSrc('/images/errorImage.png')}
+          onError={() => setSrc('/images/placeholder.png')}
         /> :   
       mediaType === 'video' ? 
         <video className="max-h-[360px]" height={360} width={360} controls src={getIpfsLink(ipfsAnimation)}></video> : 
