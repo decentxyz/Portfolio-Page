@@ -19,40 +19,10 @@ a {
   box-sizing: border-box;
 }
 
-.background {
-  background-color: #0a0f17;
-  background-image:
-      radial-gradient(farthest-side at -20% 30%, rgba(115, 15, 230, 0.7) 0, transparent 50%),
-      radial-gradient(farthest-corner at 120% 120%, rgba(115, 15, 230, 0.7) 0, transparent 40%);
-}
-
-h1 {
-  @apply text-3xl font-medium
-}
-
 .diplay-wallet {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.info-box {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 16px;
-  background: #FFFFFF;
-
-  box-shadow: 0px 10px 20px 5px rgba(218, 217, 227, 0.31);
-  border-radius: 12px;
-
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #000000;
 }
 
 ::-moz-selection { background-color: #F1E7FC; 

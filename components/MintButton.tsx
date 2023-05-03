@@ -51,7 +51,7 @@ const MintButton = (props:any) => {
   }
 
   return <div className="flex gap-4 py-2 items-center px-4 sm:px-0">
-      <button disabled={isMinting} className="bg-black hover:bg-opacity-80 text-white px-5 py-1 rounded-full font-[600] w-full text-lg uppercase" onClick={mint}>{isMinting ? "..." : "Mint"}</button>
+      <button disabled={isMinting} className={`${props.className}`} onClick={mint}>{isMinting ? "..." : "Mint"}</button>
     </div>;
 };
 
