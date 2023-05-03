@@ -9,5 +9,6 @@
   padding: 12px 24px;
   gap: 10px;
   min-height: 64px;
+  background-color: white;
   border-bottom: 1px solid rgba(229, 231, 235, 0.194);
 }
